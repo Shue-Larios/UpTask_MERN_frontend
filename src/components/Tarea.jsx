@@ -15,7 +15,7 @@ export const Tarea = ({ tarea }) => {
     // para mostrar/ocultar cosas con el hook si no es el admin
     const admin = useAdmin();
 
-    
+
 
     return (
         <div className="border-b p-5 flex justify-between items-center">
@@ -23,14 +23,24 @@ export const Tarea = ({ tarea }) => {
             <div className="flex flex-col items-start">
                 <p className="mb-1 text-xl">{nombre} </p>
                 <p className="mb-1 text-sm text-gray-500 uppercase">{descripcion} </p>
-                <p className="mb-1 text-xl">Prioridad: {prioridad} </p>
+                {/* <p className="mb-1 text-xl">Prioridad: {prioridad} </p> */}
+
+                <p className="mb-1 text-xl">
+                    {/* aca le pongo un espacio  */}
+                    Prioridad:{" "}
+                    <span style={{ color: prioridad === "Alta" ? "red" : prioridad === "Media" ? "#E8CA0D" : "green" }}>
+                        {prioridad}
+                    </span>
+                </p>
+
+
                 <p className="mb-1  text-gray-600">{formatearFecha(fechaEntrega)} </p>
                 {/* muestra quien la completo si el estado esta como true */}
-                 {estado &&
-                    <p 
-                    className="text-xs bg-green-600 uppercase p-1 rounded-lg text-white"
+                {estado &&
+                    <p
+                        className="text-xs bg-green-600 uppercase p-1 rounded-lg text-white"
                     >Completada por: {tarea.completado.nombre}</p>
-                }  
+                }
             </div>
 
             <div className="flex pl-2 flex-col lg:flex-row gap-1">
